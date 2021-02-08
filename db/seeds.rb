@@ -1,4 +1,4 @@
-Dir.glob(File.expand_path("../../app/models/*.rb", __FILE__)).each {|f| require_relative f }
+require_relative '../config/environment'
 
 seeds = {
   postcodes: [
