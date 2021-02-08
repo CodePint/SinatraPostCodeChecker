@@ -1,5 +1,5 @@
 class PostcodesController < ApplicationController
-  get '/' do
+  get "/" do
     @message = "PostcodesController"
     erb :index
   end

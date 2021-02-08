@@ -1,6 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (6.1.0)
+      activesupport (= 6.1.0)
+    activerecord (6.1.0)
+      activemodel (= 6.1.0)
+      activesupport (= 6.1.0)
     activesupport (6.1.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -15,12 +20,13 @@ GEM
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
     minitest (5.14.3)
+    multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
-    pry (0.13.1)
+    pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
     rack (2.2.3)
@@ -28,6 +34,7 @@ GEM
       rack
     rainbow (3.0.0)
     regexp_parser (2.0.3)
+    require_all (3.0.0)
     rexml (3.2.4)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -60,6 +67,16 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-activerecord (2.0.20)
+      activerecord (>= 4.1)
+      sinatra (>= 1.0)
+    sinatra-contrib (2.1.0)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.1.0)
+      sinatra (= 2.1.0)
+      tilt (~> 2.0)
+    sqlite3 (1.4.2)
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -67,14 +84,20 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
+  activerecord (= 6.1.0)
   activesupport (= 6.1.0)
   pry
+  require_all (= 3.0.0)
   rspec (= 3.10.0)
   rubocop (= 1.9.0)
   sinatra (= 2.1.0)
+  sinatra-activerecord (= 2.0.20)
+  sinatra-contrib
+  sqlite3
 
 BUNDLED WITH
    2.2.3

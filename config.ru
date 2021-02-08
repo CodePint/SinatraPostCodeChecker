@@ -1,10 +1,5 @@
-require 'sinatra/base'
-require 'active_support'
+require_relative './config/environment'
+Dir.glob(File.expand_path("../app/**/*.rb", __FILE__)).each {|f| require_relative f }
 
-# require controller and helper files
-Dir.glob('app/helpers/*.rb').sort.each {|file| require_relative file }
-Dir.glob('app/controllers/*.rb').sort.each {|file| require_relative file }
-
-# configure controller route prefixes
-map('/') { run ApplicationController }
-map('/') { run PostcodesController }
+run ApplicationController
+use PostcodesController
