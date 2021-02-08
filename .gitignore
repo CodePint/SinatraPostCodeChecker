@@ -1,1 +1,2 @@
 .rubocop.yml
+db/*.sqlite3
