@@ -1,12 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.1.0)
-      activesupport (= 6.1.0)
-    activerecord (6.1.0)
-      activemodel (= 6.1.0)
-      activesupport (= 6.1.0)
-    activesupport (6.1.0)
+    activemodel (6.1.1)
+      activesupport (= 6.1.1)
+    activerecord (6.1.1)
+      activemodel (= 6.1.1)
+      activesupport (= 6.1.1)
+    activesupport (6.1.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -32,7 +32,10 @@ GEM
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
+    rake (13.0.3)
     regexp_parser (2.0.3)
     require_all (3.0.0)
     rexml (3.2.4)
@@ -49,7 +52,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
-    rubocop (1.9.0)
+    rubocop (1.9.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -67,7 +70,7 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
-    sinatra-activerecord (2.0.20)
+    sinatra-activerecord (2.0.22)
       activerecord (>= 4.1)
       sinatra (>= 1.0)
     sinatra-contrib (2.1.0)
@@ -85,19 +88,20 @@ GEM
 
 PLATFORMS
   ruby
-  x86_64-linux
 
 DEPENDENCIES
-  activerecord (= 6.1.0)
-  activesupport (= 6.1.0)
+  activerecord (~> 6.1.0)
+  activesupport (~> 6.1.0)
   pry
-  require_all (= 3.0.0)
-  rspec (= 3.10.0)
-  rubocop (= 1.9.0)
+  rack-test (~> 1.1.0)
+  rake
+  require_all (~> 3.0.0)
+  rspec (~> 3.10.0)
+  rubocop (~> 1.9.0)
   sinatra (= 2.1.0)
-  sinatra-activerecord (= 2.0.20)
-  sinatra-contrib
-  sqlite3
+  sinatra-activerecord (= 2.0.22)
+  sinatra-contrib (= 2.1.0)
+  sqlite3 (~> 1.4.0)
 
 BUNDLED WITH
-   2.2.3
+   2.1.4
