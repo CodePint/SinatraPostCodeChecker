@@ -4,7 +4,6 @@ require_relative '../helpers/application_helper'
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
   helpers ActionView::Helpers::FormTagHelper
-
   register Sinatra::ActiveRecordExtension
 
   # set views erb template directory

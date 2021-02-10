@@ -1,13 +1,11 @@
 require_relative '../../spec_helper'
-require_relative 'postcodes_api_spec_helpers.rb'
-
+require_relative '../services_spec_helpers'
 require_relative '../../../app/services/postcodes_checker/exceptions'
 require_relative '../../../app/services/postcodes_api/client'
 require_relative '../../../app/services/postcodes_api/exceptions'
-require 'pry'
 
 RSpec.configure do |c|
-  c.include PostcodesApiSpecHelpers
+  c.include ServicesSpecHelpers
 end
 
 describe PostcodesAPI do
@@ -15,12 +13,9 @@ describe PostcodesAPI do
     let(:api_uri) { ENV["POSTCODES_API_BASE_URI"] }
     let(:client) { PostcodesAPI::Client.new }
 
-    let(:valid_postcode) { "SE17QD" }
+    let(:found_postcode) { "SE17QD" }
     let(:invalid_postcode) { "S£19%D" }
     let(:not_found_postcode) { "SE19QD" }
-
-    let(:valid_lsoa) { "Southwark" }
-    let(:invalid_lsoa) { "InvalidLsoa" }
 
     context "#request" do
       let(:endpoint) { "#{api_uri}/test" }
@@ -83,12 +78,12 @@ describe PostcodesAPI do
     context "#lookup_postcode" do
       let(:endpoint) { "#{api_uri}/postcodes" }
       context "when a matching postcode is found" do
-        let(:expected_response) { postcode_lookup_response(valid_postcode, valid_lsoa) }
+        let(:expected_response) { postcode_lookup_response(found_postcode) }
         it "calls the endpoint and returns the parsed json data" do
-          stub_request(:get, "#{endpoint}/#{valid_postcode.strip.chomp}").
+          stub_request(:get, "#{endpoint}/#{found_postcode}").
             to_return(body: JSON.dump(expected_response), status: 200)
 
-          data = client.lookup_postcode(valid_postcode)
+          data = client.lookup_postcode(found_postcode)
           expect(data).to eq(expected_response)
         end
       end
@@ -96,7 +91,7 @@ describe PostcodesAPI do
       context "when postcode is not found" do
         it "raises PostcodeNotFound" do
           error_message = "Postcode not found"
-          stub_request(:get, /#{endpoint}.*/).
+          stub_request(:get, "#{endpoint}/#{not_found_postcode}").
             to_return(body: JSON.dump(not_found_response(error_message)), status: 404)
 
           expect {
@@ -108,11 +103,11 @@ describe PostcodesAPI do
       context "when the postcode is invalid" do
         it "raises PostcodeInvalid" do
           error_message = "Invalid postcode"
-          stub_request(:get, /#{endpoint}.*/).
+          stub_request(:get, "#{endpoint}/#{invalid_postcode}").
           to_return(body: JSON.dump(not_found_response(error_message)), status: 404)
 
           expect {
-            client.lookup_postcode(not_found_postcode)
+            client.lookup_postcode(invalid_postcode)
           }.to raise_error(PostcodesCheckerExceptions::PostcodeInvalid)
         end
       end

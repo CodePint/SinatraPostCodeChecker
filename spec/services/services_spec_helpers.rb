@@ -1,7 +1,7 @@
 # future updates could use faker or vcr gems to generate data
 # alongside integration with proper factory helpers (factory bot)
 
-module PostcodesApiSpecHelpers
+module ServicesSpecHelpers
   def success_response(result=true)
     {"status" => 200, "result" => result}
   end

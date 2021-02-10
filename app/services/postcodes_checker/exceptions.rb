@@ -6,7 +6,7 @@ module PostcodesCheckerExceptions
   end
 
   class PostcodeInvalid < StandardError
-    def initialize(msg="")
+    def initialize(msg="Invalid postcode")
       super(msg)
     end
   end

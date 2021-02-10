@@ -1,0 +1,5 @@
+[
+  {"value": "SH241AA", "allowed": true},
+  {"value": "SH241AB", "allowed": true},
+  {"value": "XXXXXX", "allowed": false}
+]

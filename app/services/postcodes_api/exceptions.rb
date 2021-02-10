@@ -1,3 +1,5 @@
+require 'faraday'
+
 module PostcodesApiExceptions
   class PostcodesApiClientError < StandardError
     def initialize(msg="")
