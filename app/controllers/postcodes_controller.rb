@@ -4,7 +4,6 @@ require_relative '../models/postcode'
 require_relative '../helpers/postcode_helper'
 require_relative '../services/postcodes_api/client'
 require_relative '../services/postcodes_checker/service'
-require 'pry'
 
 class PostcodesController < ApplicationController
   include PostcodesApiExceptions, PostcodesCheckerExceptions
