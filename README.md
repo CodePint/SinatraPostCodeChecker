@@ -6,7 +6,7 @@
 - Requires sqlite and ruby 2.7.2
 - To install dependancies run `bundle install`
 
-### Satabase
+### Database
 ---
 - To configure and seed the sqlite database run `rake db:setup`
 - Production seed files should be placed at `seeds/production`
