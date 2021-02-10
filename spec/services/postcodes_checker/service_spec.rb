@@ -1,10 +1,8 @@
 require_relative '../../spec_helper'
 require_relative '../services_spec_helpers'
-
 require_relative '../../../app/services/postcodes_checker/service'
 require_relative '../../../app/services/postcodes_checker/exceptions'
 require_relative '../../../app/services/postcodes_api/exceptions'
-require 'pry'
 
 RSpec.configure do |c|
   c.include ServicesSpecHelpers
@@ -44,7 +42,9 @@ describe PostcodesChecker do
           stub_request(:get, "#{endpoint}/#{not_found_postcode}").
             to_return(body: JSON.dump(not_found_response(error_message)), status: 404)
 
-          expect(service_checker.servicable?(not_found_postcode)).to be false
+            expect {
+              service_checker.servicable?(not_found_postcode)
+            }.to raise_error(PostcodesCheckerExceptions::PostcodeNotFound)
         end
       end
 
