@@ -4,5 +4,6 @@ class CreatePostcodeTable < ActiveRecord::Migration[6.1]
       t.string :value
       t.boolean :allowed, default: false
     end
+    add_index :postcodes, :value, unique: true
   end
 end

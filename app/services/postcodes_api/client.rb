@@ -18,8 +18,7 @@ module PostcodesAPI
 
     def lookup_postcode(postcode)
       begin
-        postcode = CGI.escape(postcode.strip.chomp)
-        request(verb: :get, endpoint: "postcodes/#{postcode}")
+        request(verb: :get, endpoint: "postcodes/#{sanitize(postcode)}")
       rescue NotFoundError => e
         raise PostcodeNotFound if postcode_not_found?(e)
         raise PostcodeInvalid if postcode_invalid?(e)
@@ -43,6 +42,10 @@ module PostcodesAPI
 
     def postcode_invalid?(error)
       error.message.casecmp?("invalid postcode")
+    end
+
+    def sanitize(value)
+      CGI.escape(value.delete(" \t\r\n"))
     end
 
     def connection

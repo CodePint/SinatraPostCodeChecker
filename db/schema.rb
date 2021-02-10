@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(version: 2021_02_08_154625) do
   create_table "LSOAs", force: :cascade do |t|
     t.string "value"
     t.boolean "allowed", default: false
+    t.index ["value"], name: "index_LSOAs_on_value", unique: true
   end
 
   create_table "postcodes", force: :cascade do |t|
     t.string "value"
     t.boolean "allowed", default: false
+    t.index ["value"], name: "index_postcodes_on_value", unique: true
   end
 
 end
