@@ -1,4 +1,4 @@
-require_relative "../spec_helper"
+require_relative '../spec_helper'
 
 describe ApplicationController do
   context "GET /test" do
@@ -6,8 +6,6 @@ describe ApplicationController do
       params = {message: "world"}
       response = get "/test", params, format: :json
       expect(response.body).to include(params[:message])
-      # require 'pry'
-      # binding.pry
     end
   end
 end

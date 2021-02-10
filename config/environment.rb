@@ -1,7 +1,10 @@
+require 'dotenv'
+Dotenv.load
+
 ENV["RACK_ENV"] ||= "development"
 
-## require order important due to sinatra-contrib/rake conflict
-## see: https://stackoverflow.com/questions/30656858/66110634
+# order important due to sinatra extensions and rake conflict
+# see: https://stackoverflow.com/questions/30656858/66110634
 require 'rake'
 require 'sinatra'
 require 'sinatra/reloader'
