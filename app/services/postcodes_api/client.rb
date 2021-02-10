@@ -58,7 +58,7 @@ module PostcodesAPI
     end
 
     def configure_retries
-      config = {max: 3, interval: 0.5, backoff_factor: 0}
+      config = {max: 3, interval: 1, backoff_factor: 0}
       config[:retry_statuses] = (500..599).to_a
       config[:methods] = [:get, :post]
       config[:exceptions] = FARADAY_EXCEPTIONS

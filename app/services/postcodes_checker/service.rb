@@ -15,15 +15,14 @@ module PostcodesChecker
 
     def servicable?(postcode)
       Postcode.validate!(postcode)
-      Postcode.allowed?(postcode) || LSOA.allowed?(get_lsoa(postcode))
+      return true if Postcode.allowed?(postcode)
+      return true if LSOA.allowed?(get_lsoa(postcode))
+
+      false
     end
 
     def get_lsoa(postcode)
-      begin
-        @api_client.lookup_postcode(postcode)["result"]["lsoa"].downcase
-      rescue PostcodeNotFound
-        return false
-      end
+      @api_client.lookup_postcode(postcode)["result"]["lsoa"]&.upcase
     end
   end
 end
