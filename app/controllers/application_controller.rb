@@ -1,13 +1,11 @@
-require 'action_view'
 require_relative '../helpers/application_helper'
 
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
-  helpers ActionView::Helpers::FormTagHelper
-  register Sinatra::ActiveRecordExtension
 
   # set views erb template directory
   set :views, File.expand_path("../views", __dir__)
+  set :public_folder, File.expand_path('../../public', __dir__)
 
   # enable logging for development and production
   configure :development, :production do
@@ -22,6 +20,6 @@ class ApplicationController < Sinatra::Base
   # dummy route
   get "/test" do
     @message = params["message"]
-    erb :'application/test'
+    erb :test
   end
 end

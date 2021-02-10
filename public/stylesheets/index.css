@@ -1,0 +1,52 @@
+#page-wrapper {
+  background: #32E875;
+  color: #202020;
+  height: 100vh;
+}
+
+.header {
+  margin: 0 auto;
+  text-align: center;
+  padding: 3.5em;
+}
+
+.header h1 {
+  font-size: 4em;
+}
+
+.content {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.postcode-check-form {
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.postcode-check-form label {
+  margin-top: 0.5em;
+  display: block;
+}
+
+.postcode-check-form input {
+  padding: 0.4em;
+  display: block;
+  margin-bottom: 0.25em;
+  margin-left: 1em;
+  font-size: 0.4em;
+}
+
+.postcode-check-form .result {
+  padding-left: 0.5em;
+  font-size: 1.1em;
+}
+
+.content .error,
+.content .message {
+  font-size: 1em;
+  margin-top: 1em;
+}

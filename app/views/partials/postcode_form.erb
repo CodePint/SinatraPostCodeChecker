@@ -1,0 +1,22 @@
+<div>
+  <form class="postcode-check-form" action="/check" method="get">
+    <label for="postcode-check">Postcode</label>
+    <input id="postcode-check" name="postcode" type="text" value=<%= @postcode %>>
+    <div class="result">
+      <span class="success"><%= @servicable == true ? "&check;" : ""%></span>
+      <span class="failed"><%= @servicable == false ? "&cross;" : ""%></span>
+    </div>
+  </form>
+
+  <div class="message">
+    <div class="success">
+      <%= @servicable == true ? "Service available for: '#{@postcode}'" : ""%>
+    </div>
+    <div class="failed">
+      <%= @servicable == false ? "Service unavailable for: '#{@postcode}'" : ""%>
+    </div>
+  <div>
+  <div class="error">
+    <span><%= @error ? "Error: #{@error}" : "" %></span>
+  <div>
+<div>

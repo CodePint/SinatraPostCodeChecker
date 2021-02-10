@@ -17,7 +17,7 @@ class Postcode < ActiveRecord::Base
   end
 
   def self.validate!(postcode)
-    @pattern.match(sanitize(postcode)) || (raise PostcodeInvalid)
+    @pattern.match?(sanitize(postcode)) || (raise PostcodeInvalid)
   end
 
 end
