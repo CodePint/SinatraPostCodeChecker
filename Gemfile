@@ -22,4 +22,5 @@ end
 
 group :test do
   gem 'rack-test', '~> 1.1.0'
+  gem 'webmock', '~> 3.11.0'
 end
