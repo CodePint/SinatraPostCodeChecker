@@ -10,10 +10,10 @@ module PostcodesAPI
     include PostcodesApiExceptions
     include PostcodesCheckerExceptions
 
-    def initialize(base_uri=nil, timeout=3, retry_config={})
+    def initialize(base_uri=nil, retry_config={}, timeout=3)
       @base_uri = base_uri || ENV["POSTCODES_API_BASE_URI"]
+      @retry_config = configure_retries.merge(retry_config)
       @timeout = timeout
-      @retry_config = retry_config
     end
 
     def lookup_postcode(postcode)
@@ -50,7 +50,7 @@ module PostcodesAPI
 
     def connection
       @conn ||= Faraday.new(@base_uri) do |c|
-        c.request :retry, configure_retries.merge(@retry_config)
+        c.request :retry, @retry_config
         c.options.timeout = @timeout
         c.request :url_encoded
         c.adapter :net_http
@@ -59,7 +59,7 @@ module PostcodesAPI
 
     def configure_retries
       config = {max: 3, interval: 1, backoff_factor: 0}
-      config[:retry_statuses] = (500..599).to_a
+      config[:retry_statuses] = [500]
       config[:methods] = [:get, :post]
       config[:exceptions] = FARADAY_EXCEPTIONS
       config
