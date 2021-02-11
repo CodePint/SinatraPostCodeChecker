@@ -1,6 +1,6 @@
 module PostcodesCheckerExceptions
   class PostcodeNotFound < StandardError
-    def initialize(msg="")
+    def initialize(msg="Postcode not found")
       super(msg)
     end
   end

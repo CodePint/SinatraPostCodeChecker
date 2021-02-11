@@ -1,5 +1,5 @@
 <div>
-  <form class="postcode-check-form" action="/check" method="get">
+  <form class="postcode-check-form" action="/postcodes/check" method="get">
     <label for="postcode-check">Postcode</label>
     <input id="postcode-check" name="postcode" type="text" value=<%= @postcode %>>
     <div class="result">
@@ -13,7 +13,7 @@
       <%= @servicable == true ? "Service available for: '#{@postcode}'" : ""%>
     </div>
     <div class="failed">
-      <%= @servicable == false ? "Service unavailable for: '#{@postcode}'" : ""%>
+      <%= @servicable == false ? "Service is not available for: '#{@postcode}'" : ""%>
     </div>
   <div>
   <div class="error">

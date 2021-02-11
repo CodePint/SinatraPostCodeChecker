@@ -9,10 +9,6 @@ require_relative '../config/environment'
 
 module RSpecMixin
   include Rack::Test::Methods
-
-  def app
-    ApplicationController
-  end
 end
 
 RSpec.configure do |config|
