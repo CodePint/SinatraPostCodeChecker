@@ -1,4 +1,4 @@
 require_relative './config/environment'
 
-run ApplicationController
-use PostcodesController
+map("/") { run ApplicationController }
+map("/postcodes") { run PostcodesController }
