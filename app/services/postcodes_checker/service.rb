@@ -26,4 +26,3 @@ module PostcodesChecker
     end
   end
 end
-

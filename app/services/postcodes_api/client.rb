@@ -1,4 +1,3 @@
-
 require 'active_support'
 require 'faraday'
 require 'json'
@@ -17,13 +16,12 @@ module PostcodesAPI
     end
 
     def lookup_postcode(postcode)
-      begin
-        request(verb: :get, endpoint: "postcodes/#{sanitize(postcode)}")
-      rescue NotFoundError => e
-        raise PostcodeNotFound if postcode_not_found?(e)
-        raise PostcodeInvalid if postcode_invalid?(e)
-        raise
-      end
+      request(verb: :get, endpoint: "postcodes/#{sanitize(postcode)}")
+    rescue NotFoundError => e
+      raise PostcodeNotFound if postcode_not_found?(e)
+      raise PostcodeInvalid if postcode_invalid?(e)
+
+      raise
     end
 
     private
@@ -45,7 +43,7 @@ module PostcodesAPI
     end
 
     def sanitize(value)
-      CGI.escape(value.delete(" \t\r\n"))
+      CGI.escape(value.to_s.delete(" \t\r\n"))
     end
 
     def connection
@@ -60,7 +58,7 @@ module PostcodesAPI
     def configure_retries
       config = {max: 3, interval: 1, backoff_factor: 0}
       config[:retry_statuses] = [500]
-      config[:methods] = [:get, :post]
+      config[:methods] = %i[get post]
       config[:exceptions] = FARADAY_EXCEPTIONS
       config
     end

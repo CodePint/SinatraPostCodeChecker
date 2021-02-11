@@ -25,8 +25,7 @@ module PostcodesApiExceptions
     end
   end
 
-  HTTP_EXCEPTIONS = Hash.new(PostcodesApiClientError)
-  HTTP_EXCEPTIONS.update(
+  HTTP_EXCEPTIONS = Hash.new(PostcodesApiClientError).update(
     400 => BadRequestError,
     404 => NotFoundError,
     500 => InternalServerError
@@ -36,6 +35,6 @@ module PostcodesApiExceptions
     Faraday::ConnectionFailed,
     Faraday::RetriableResponse,
     Faraday::TimeoutError,
-    Errno::ETIMEDOUT,
-  ]
+    Errno::ETIMEDOUT
+  ].freeze
 end

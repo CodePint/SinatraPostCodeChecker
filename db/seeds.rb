@@ -3,10 +3,10 @@ require_relative '../config/environment'
 
 
 def load_seed_data
-  seed_path = ENV["SEED_PATH"] || "db/seeds/#{ENV["RACK_ENV"]}"
+  seed_path = ENV["SEED_PATH"] || "db/seeds/#{ENV['RACK_ENV']}"
   {
     postcodes: JSON.parse(File.read(File.join(seed_path, "postcodes.json"))),
-    LSOAs: JSON.parse(File.read(File.join(seed_path, "LSOAs.json")))
+    LSOAs:     JSON.parse(File.read(File.join(seed_path, "LSOAs.json")))
   }
 end
 
