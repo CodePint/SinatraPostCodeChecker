@@ -22,9 +22,10 @@ describe PostcodesController do
       it "returns 200 and renders the template with a service available message" do
         expected_message = "Service available for: '#{sanitized_postcode}'"
         expect(@service_checker_double).to(
-          receive(:servicable?).
-          with(sanitized_postcode).
-          and_return(true))
+          receive(:servicable?)
+          .with(sanitized_postcode)
+          .and_return(true)
+        )
 
         response = get "/check", {postcode: postcode}, format: :json
         expect(response.status).to eq(200)
@@ -32,16 +33,17 @@ describe PostcodesController do
       end
 
       context "when postcode is not servicable" do
-        it "returns 200 and renders the template with a service unavailable message"do
-        expected_message = "Service is not available for: '#{sanitized_postcode}'"
-        expect(@service_checker_double).to(
-          receive(:servicable?).
-          with(sanitized_postcode).
-          and_return(false))
+        it "returns 200 and renders the template with a service unavailable message" do
+          expected_message = "Service is not available for: '#{sanitized_postcode}'"
+          expect(@service_checker_double).to(
+            receive(:servicable?)
+            .with(sanitized_postcode)
+            .and_return(false)
+          )
 
-        response = get "/check", {postcode: postcode}, format: :json
-        expect(response.status).to eq(200)
-        expect(response.body).to include(expected_message)
+          response = get "/check", {postcode: postcode}, format: :json
+          expect(response.status).to eq(200)
+          expect(response.body).to include(expected_message)
         end
       end
 
@@ -50,9 +52,10 @@ describe PostcodesController do
           it "returns 400 and renders the template with the exception error message" do
             expected_message = "Error: Invalid postcode"
             expect(@service_checker_double).to(
-              receive(:servicable?).
-              with(sanitized_postcode).
-              and_raise(PostcodesCheckerExceptions::PostcodeInvalid))
+              receive(:servicable?)
+              .with(sanitized_postcode)
+              .and_raise(PostcodesCheckerExceptions::PostcodeInvalid)
+            )
 
             response = get "/check", {postcode: postcode}, format: :json
             expect(response.status).to eq(400)
@@ -64,9 +67,10 @@ describe PostcodesController do
           it "returns 400 and renders the template with the exception error message" do
             expected_message = "Error: Postcode not found"
             expect(@service_checker_double).to(
-              receive(:servicable?).
-              with(sanitized_postcode).
-              and_raise(PostcodesCheckerExceptions::PostcodeNotFound))
+              receive(:servicable?)
+              .with(sanitized_postcode)
+              .and_raise(PostcodesCheckerExceptions::PostcodeNotFound)
+            )
 
             response = get "/check", {postcode: postcode}, format: :json
             expect(response.status).to eq(404)
@@ -78,9 +82,10 @@ describe PostcodesController do
           it "returns 500 and renders the template with the exception error message" do
             expected_message = "Internal server error"
             expect(@service_checker_double).to(
-              receive(:servicable?).
-              with(sanitized_postcode).
-              and_raise(Errno::ETIMEDOUT))
+              receive(:servicable?)
+              .with(sanitized_postcode)
+              .and_raise(Errno::ETIMEDOUT)
+            )
 
             response = get "/check", {postcode: postcode}, format: :json
             expect(response.status).to eq(500)

@@ -15,6 +15,6 @@ RSpec.configure do |config|
   config.include RSpecMixin
 
   config.before(:suite) do
-    Rake::Task['db:reset'].invoke()
+    Rake::Task["db:reset"].invoke
   end
 end
