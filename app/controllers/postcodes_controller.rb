@@ -29,5 +29,4 @@ class PostcodesController < ApplicationController
     end
     erb :index
   end
-
 end
