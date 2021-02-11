@@ -3,19 +3,19 @@
 
 ### Installation
 ---
-- Requires sqlite and Ruby `2.7.2`
+- Requires SQLite and Ruby 2.7.2
 - Install dependancies with: `bundle install`
 
 ### Database
 ---
-- Configuring and seeding the sqlite database: `rake db:setup`
+- Configure and seed the SQLite database: `rake db:setup`
 - Production seed files should be placed at: `seeds/production`
 
 ### Running the project
 ---
-- Running the server: `Bundle & Rackup`
+- Run the server: `Bundle & Rackup`
 - View the landing page at: `127.0.0.1:9292/postcodes`
 
 ### Tests
 ---
-- Run the tests with: `rspec`
+- Run the tests suite: `rspec`
