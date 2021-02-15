@@ -8,7 +8,7 @@
 - Some postcodes are unknown by the API or may be servicable despite being outside of the
 allowed LSOAs. These are stored in the database and are servicable if their `allowed` column is set to `true`. This can be checked by invoking the `Postcode.allowed?` model method.
 
-- Any postcode not in the LSOA allowed list or the Postcode allowed list is not servicable, this can be checked by leveraging the `PostcodesChecker::Service` class instance and invoking the `servicable?` method. This is core functionality is exposed publically via the `PostcodesController` using a html form at '`GET /postcodes`' to submit a request to '`GET /postcodes/check`' with a `postcode` param
+- Any postcode not in the LSOA allowed list or the Postcode allowed list is not servicable, this can be checked by leveraging the `PostcodesChecker::Service` class instance and invoking the `servicable?` method. This core functionality is exposed publically via the `PostcodesController` using a html form at '`GET /postcodes`' to submit a request to '`GET /postcodes/check`' with a `postcode` param
 
 ### Using the application
 ---

@@ -19,14 +19,13 @@ class PostcodesController < ApplicationController
     begin
       @postcode = Postcode.sanitize(params[:postcode])
       @servicable = service_checker.servicable?(@postcode)
-    rescue PostcodeInvalid => @error
-      status 400
-    rescue PostcodeNotFound => @error
-      status 404
+    rescue PostcodesServiceCheckerError => @error
+      status POSTCODES_HTTP_EXCEPTIONS[@error.class]
     rescue StandardError
       @error = "Internal server error"
       status 500
     end
+
     erb :index
   end
 end
