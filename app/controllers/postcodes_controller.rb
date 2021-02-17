@@ -8,8 +8,10 @@ class PostcodesController < ApplicationController
   include PostcodesCheckerExceptions
 
   helpers PostcodesHelper
-  set :api_client, PostcodesAPI::Client.new
-  set :service_checker, PostcodesChecker::Service.new(api_client)
+  set :service_checker, PostcodesChecker::Service.new(
+    primary_client: PostcodesAPI::Client.new(ENV["POSTCODES_API_PRIMARY_URI"]),
+    backup_client:  PostcodesAPI::Client.new(ENV["POSTCODES_API_BACKUP_URI"])
+  )
 
   get "/" do
     erb :index

@@ -9,12 +9,15 @@ module PostcodesAPI
     include PostcodesApiExceptions
     include PostcodesCheckerExceptions
 
-    def initialize(base_uri=nil, retry_config={}, timeout=3)
-      @base_uri = base_uri || ENV["POSTCODES_API_BASE_URI"]
-      @retry_config = configure_retries.merge(retry_config)
+    attr_reader :base_uri
+
+    def initialize(base_uri, timeout=3, retry_config={})
+      @base_uri = base_uri
       @timeout = timeout
+      @retry_config = configure_retries.merge(retry_config)
     end
 
+    # consideration needed for backup api endpoint names and errors
     def lookup_postcode(postcode)
       request(verb: :get, endpoint: "postcodes/#{sanitize(postcode)}")
     rescue NotFoundError => e

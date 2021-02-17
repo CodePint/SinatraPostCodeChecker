@@ -10,8 +10,8 @@ end
 
 describe PostcodesAPI do
   describe PostcodesAPI::Client do
-    let(:api_uri) { ENV["POSTCODES_API_BASE_URI"] }
-    let(:client) { PostcodesAPI::Client.new }
+    let(:api_uri) { ENV["POSTCODES_API_PRIMARY_URI"] }
+    let(:client) { PostcodesAPI::Client.new(api_uri) }
 
     let(:found_postcode) { "SE17QD" }
     let(:invalid_postcode) { "S£19%D" }
